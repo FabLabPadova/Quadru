@@ -51,11 +51,6 @@ void loop(){
 }//loop
 
 void activityLed (bool in_activity){
-  if (in_activity){
-    digitalWrite(LED_OFF, LOW);
-    digitalWrite(LED_ACTIVITY, HIGH);
-  }else {
-    digitalWrite(LED_OFF, HIGH);
-    digitalWrite(LED_ACTIVITY, LOW);
-  }//else
+  digitalWrite(LED_OFF, !in_activity);
+  digitalWrite(LED_ACTIVITY, in_activity);
 }//activityLed
