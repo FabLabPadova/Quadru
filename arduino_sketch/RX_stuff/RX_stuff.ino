@@ -13,7 +13,7 @@ bool full_string_complete = false;
 String rec = "";
 bool end_str = false;
 
-const int conv_hex_to_dec(const char * shex, const int len);
+int conv_hex_to_dec(const char * shex, const int len);
 
 void setup() {
   Serial.begin(9600);
@@ -52,8 +52,7 @@ void loop(){
   IV: len int shex's length.
   OR: shex converted into integer number.
 */
-const int conv_hex_to_dec(const char * shex, const int len){
-    int let_hex[6] = {10, 11, 12, 13, 14, 15};
+int conv_hex_to_dec(const char * shex, const int len){
     int dec = 0;
     for (int i=0; i<len; i++)
         dec+= (int)(pow(16, len-i-1)) * ((shex[i] >= '0' && shex[i] <= '9') * 
