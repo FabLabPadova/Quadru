@@ -14,8 +14,8 @@ String rec = "";
 RF24 radio(CE_PIN, CSN_PIN);
 
 int conv_hex_to_dec(const char * shex, const unsigned int len);
-void scan_str();
 int _pow (unsigned int base, unsigned int exponent);
+void scan_str();
 
 void setup() {
   Serial.begin(9600);
