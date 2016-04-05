@@ -4,7 +4,7 @@
 
 #define CE_PIN   9
 #define CSN_PIN 10
-#define LED_ACTIVITY 7
+#define LED_ON 7
 #define LED_OFF 8
 #define INTERVAL 5
 #define PIPE 0xE8E8F0F0E1LL
@@ -22,7 +22,7 @@ void serialEvent();
 
 void setup(){
   Serial.begin(9600);
-  pinMode(LED_ACTIVITY, OUTPUT);
+  pinMode(LED_ON, OUTPUT);
   pinMode(LED_OFF, OUTPUT);
   digitalWrite(LED_OFF, HIGH);
   memset(stuff, 0, BUFFER_SIZE);
@@ -48,7 +48,7 @@ void loop(){
 
 void activityLed (bool in_activity){
   digitalWrite(LED_OFF, !in_activity);   
-  digitalWrite(LED_ACTIVITY, in_activity);
+  digitalWrite(LED_ON, in_activity);
 }//activityLed
 
 void serialEvent() {
