@@ -35,11 +35,11 @@ void loop(){
       while (!done)
         done = radio.read( stuff, BUFFER_SIZE );
       int i = 0;
-      while (i<BUFFER_SIZE && (end_str = stuff[i] != '!'))
+      while (i<BUFFER_SIZE && !(end_str = stuff[i] == '!'))
         rec += stuff[i++];
       memset(stuff, 0, BUFFER_SIZE);
     }//if-available
-    if (!end_str){
+    if (end_str){
       Serial.print(rec.charAt(0));
       Serial.print(rec.charAt(1));
       Serial.print(':');
