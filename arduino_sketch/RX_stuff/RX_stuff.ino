@@ -39,7 +39,7 @@ void loop(){
         rec += stuff[i++];
       memset(stuff, 0, BUFFER_SIZE);
     }//if-available
-    if (end_str){
+    if (!end_str){
       Serial.print(rec.charAt(0));
       Serial.print(rec.charAt(1));
       Serial.print(':');
