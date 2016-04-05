@@ -8,11 +8,10 @@
 #define BUFFER_SIZE 32
 #define DIM_GROUP 3
 
-RF24 radio(CE_PIN, CSN_PIN);
 char stuff[BUFFER_SIZE]; 
-bool full_string_complete = false;
+bool full_string_complete = false, end_str = false;
 String rec = "";
-bool end_str = false;
+RF24 radio(CE_PIN, CSN_PIN);
 
 int conv_hex_to_dec(const char * shex, const unsigned int len);
 void scan_str();
