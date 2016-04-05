@@ -35,7 +35,7 @@ void loop(){
       while (!done)
         done = radio.read( stuff, BUFFER_SIZE );
       int i = 0;
-      while (i<BUFFER_SIZE && stuff[i] != '!')
+      while (i<BUFFER_SIZE && (end_str = stuff[i] != '!'))
         rec += stuff[i++];
       memset(stuff, 0, BUFFER_SIZE);
     }//if-available
