@@ -53,7 +53,7 @@ void scan_str(){
   int m = 0;
   for (unsigned int i=2; i<rec.length(); i++){
     group[m] = rec.charAt(i);
-    if ((i-1) % 3 == 0){
+    if ((i-1) % DIM_GROUP == 0){
       Serial.print(conv_hex_to_dec(group, DIM_GROUP));
       Serial.print(' ');
       m = 0;
