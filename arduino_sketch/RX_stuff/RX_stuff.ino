@@ -32,7 +32,7 @@ void loop(){
     if (radio.available()){
       bool done = false;
       while (!radio.read( stuff, BUFFER_SIZE )){} //wait transmission done and receive data.
-      int i = 0;
+      unsigned int i = 0;
       while (i<BUFFER_SIZE && !(end_str = stuff[i] == '!'))
         rec += stuff[i++];
       memset(stuff, 0, BUFFER_SIZE);
