@@ -48,7 +48,7 @@ void loop() {
   if (end_str) {
     activityLed();
     current_line = rec.charAt(0) - '0';
-    digitalWrite(LED_ALERT, !((current_line == 0 && previous_line == 4) || (current_line == previous_line+1)));
+    digitalWrite(LED_ALERT, !((current_line == 0 && previous_line == 4) || (current_line == previous_line+1))); //are you sure to be brave enough? :)
     previous_line = current_line;
     scan_str();
     rec = "";
