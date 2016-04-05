@@ -36,12 +36,9 @@ void setup(){
 void loop(){
     if (stringComplete){
       activityLed();
-      bool done = false;
       int c = 0;
-      while (!done && c < 2){ 
-        done = radio.write(stuff, BUFFER_SIZE);
+      while (!radio.write(stuff, BUFFER_SIZE) && c < 2)
         c++;
-      }//while
       activityLed(false);
       stringComplete = false;
       i = 0;
@@ -54,14 +51,11 @@ void activityLed (bool in_activity){
   digitalWrite(LED_ACTIVITY, in_activity);
 }//activityLed
 
-void serialEvent() {           
-  while (Serial.available()) {         
-    // get the new byte:
+void serialEvent() {
+  while (Serial.available()) {
     stuff[i] = (char)Serial.read();
-    if (stuff[i] == '!' || i == BUFFER_SIZE-1) {
-      stringComplete = true;
+    if (stringComplete = (stuff[i] == '!' || i == BUFFER_SIZE-1))
       break;
-    }//if
     i++;
   }//while
 }//serialEvent
