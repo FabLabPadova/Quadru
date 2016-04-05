@@ -31,8 +31,7 @@ void setup() {
 void loop(){
     if (radio.available()){
       bool done = false;
-      while (!done)
-        done = radio.read( stuff, BUFFER_SIZE );
+      while (!radio.read( stuff, BUFFER_SIZE )){} //wait transmission done and receive data.
       int i = 0;
       while (i<BUFFER_SIZE && !(end_str = stuff[i] == '!'))
         rec += stuff[i++];
