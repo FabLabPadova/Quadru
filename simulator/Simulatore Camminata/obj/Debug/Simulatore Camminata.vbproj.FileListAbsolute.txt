@@ -1,0 +1,110 @@
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\AppData\Local\Temporary Projects\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\cormo_000\Desktop\Robot\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\cormo_000\Desktop\Simulatore Camminata\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\cormo_000\Desktop\Simulatore Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\cormo_000\Desktop\Camminata - Curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\cormo_000\Desktop\Camminata - Curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\cormo_000\Desktop\Camminata - Curva2\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\cormo_000\Desktop\Camminata curva\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\cormo_000\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
+C:\Users\andre\Desktop\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
