@@ -31,7 +31,7 @@ void setup(){
   radio.openWritingPipe(PIPE);
   radio.setPALevel(RF24_PA_HIGH);
   radio.setDataRate(RF24_2MBPS);
-}
+}//setup
 
 void loop(){
     if (stringComplete){
