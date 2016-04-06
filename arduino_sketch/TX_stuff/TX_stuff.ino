@@ -54,7 +54,7 @@ void activityLed (bool in_activity){
 void serialEvent() {
   while (Serial.available()) {
     stuff[i] = (char)Serial.read();
-    if (stringComplete = (stuff[i] == '!' || i == BUFFER_SIZE-1))
+    if ((stringComplete = (stuff[i] == '!' || i == BUFFER_SIZE-1)))
       break;
     i++;
   }//while
