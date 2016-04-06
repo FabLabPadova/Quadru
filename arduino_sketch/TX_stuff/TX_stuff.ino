@@ -14,7 +14,7 @@ RF24 radio(CE_PIN, CSN_PIN);
 
 char stuff[BUFFER_SIZE];
 bool stringComplete = false;
-int i = 0;
+unsigned int i = 0;
 
 void activityLed (bool in_activity = true);
 
@@ -36,7 +36,7 @@ void setup(){
 void loop(){
     if (stringComplete){
       activityLed();
-      int c = 0;
+      unsigned int c = 0;
       while (!radio.write(stuff, BUFFER_SIZE) && c < 2)
         c++;
       activityLed(false);
