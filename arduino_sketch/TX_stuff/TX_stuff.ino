@@ -16,7 +16,7 @@ char stuff[BUFFER_SIZE];
 bool stringComplete = false;
 unsigned int i = 0;
 
-void activityLed (bool in_activity = true);
+void activityLed (const bool in_activity = true);
 
 void serialEvent();
 
@@ -46,7 +46,7 @@ void loop(){
     }//if-string
 }//loop
 
-void activityLed (bool in_activity){
+void activityLed (const bool in_activity){
   digitalWrite(LED_OFF, !in_activity);   
   digitalWrite(LED_ON, in_activity);
 }//activityLed
