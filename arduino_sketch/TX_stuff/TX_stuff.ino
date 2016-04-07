@@ -16,7 +16,7 @@ char stuff[BUFFER_SIZE];
 bool stringComplete = false;
 unsigned int i = 0;
 
-void activityLed (const bool in_activity = true);
+inline void activityLed (const bool in_activity = true);
 
 void serialEvent();
 
