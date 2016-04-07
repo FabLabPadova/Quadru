@@ -2,6 +2,6 @@
 #define UTILITY_H
 
 inline int conv_hex_to_dec(const char * shex, const unsigned int len);
-inline int _pow (unsigned int base, unsigned int exponent);
+inline int _pow (const unsigned int base, const unsigned int exponent);
 
 #endif 
