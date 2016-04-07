@@ -6,7 +6,6 @@
 #define CSN_PIN 10
 #define LED_ON 7
 #define LED_OFF 8
-#define INTERVAL 5
 #define PIPE 0xE8E8F0F0E1LL
 #define BUFFER_SIZE 32
 
