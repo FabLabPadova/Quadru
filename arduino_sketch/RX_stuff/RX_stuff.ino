@@ -64,7 +64,7 @@ void activityLed (bool in_activity){
 //Scan rec string. Every 3 character function captures string and convert hex to dec.
 void scan_str() {
   char group[DIM_GROUP];
-  int m = 0;
+  unsigned int m = 0;
   for (unsigned int i = 2; i < rec.length(); i++) {
     group[m] = rec.charAt(i);
     if ((i - 1) % DIM_GROUP == 0) {
