@@ -46,7 +46,7 @@ void loop(){
     }//if-string
 }//loop
 
-void activityLed (const bool in_activity){
+inline void activityLed (const bool in_activity){
   digitalWrite(LED_OFF, !in_activity);   
   digitalWrite(LED_ON, in_activity);
 }//activityLed
