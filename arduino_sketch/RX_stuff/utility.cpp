@@ -13,7 +13,7 @@ inline int conv_hex_to_dec(const char * shex, const unsigned int len) {
 }//conv_hex_to_dec
 
 //pow function for integer. So, the original one return result minus 1...?
-inline int _pow (unsigned int base, unsigned int exponent) {
+inline int _pow (const unsigned int base, const unsigned int exponent) {
   unsigned int ris = 1;
   for (unsigned int i = 0; i < exponent; i++)
     ris *= base;
