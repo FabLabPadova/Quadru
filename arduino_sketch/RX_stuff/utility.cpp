@@ -11,11 +11,3 @@ unsigned int conv_hex_to_dec(const char *shex, const unsigned int len){
     res = res << 4 | ((shex[i] >= '0' && shex[i] <= '9') ? (shex[i] - '0') : (shex[i] - 'A' + 10));
   return res;
 }//conv_hex_to_dec
-
-//pow function for integer. So, the original one return result minus 1...?
-unsigned int _pow (const unsigned int base, const unsigned int exponent) {
-  unsigned int ris = 1;
-  for (unsigned int i = 0; i < exponent; i++)
-    ris *= base;
-  return ris;
-}
