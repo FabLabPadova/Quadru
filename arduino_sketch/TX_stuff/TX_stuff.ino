@@ -5,7 +5,6 @@
 #define CE_PIN   9
 #define CSN_PIN 10
 #define LED_ON 7
-#define LED_OFF 8
 #define PIPE 0xE8E8F0F0E1LL
 #define BUFFER_SIZE 32
 
@@ -22,8 +21,6 @@ void serialEvent();
 void setup(){
   Serial.begin(9600);
   pinMode(LED_ON, OUTPUT);
-  pinMode(LED_OFF, OUTPUT);
-  digitalWrite(LED_OFF, HIGH);
   memset(stuff, 0, BUFFER_SIZE);
   radio.begin();
   radio.setChannel(125);
@@ -34,21 +31,16 @@ void setup(){
 
 void loop(){
     if (stringComplete){
-      activityLed();
+      digitalWrite(LED_ON, HIGH);
       unsigned int c = 0;
       while (!radio.write(stuff, BUFFER_SIZE) && c < 2)
         c++;
-      activityLed(false);
+      digitalWrite(LED_ON, LOW);
       stringComplete = false;
       i = 0;
       memset(stuff, 0, BUFFER_SIZE);
     }//if-string
 }//loop
-
-inline void activityLed (const bool in_activity){
-  digitalWrite(LED_OFF, !in_activity);   
-  digitalWrite(LED_ON, in_activity);
-}//activityLed
 
 void serialEvent() {
   while (Serial.available()) {
