@@ -22,6 +22,7 @@ void scan_str();
 
 void setup() {
   Serial.begin(9600);
+  pinMode(LED_ON, OUTPUT);
   pinMode(LED_ALERT, OUTPUT);
   radio.begin();
   radio.openReadingPipe(1, PIPE);
@@ -29,24 +30,26 @@ void setup() {
   radio.setPALevel(RF24_PA_HIGH);
   radio.setDataRate(RF24_2MBPS);
   radio.startListening();
+  memset(stuff, 0, BUFFER_SIZE);
 }//setup
 
 void loop() {
   if (radio.available()) {
-    char * stuff = new char();
-    while (!radio.read( stuff, sizeof(*stuff))){}//wait transmission done and receive data.
-    Serial.print(*stuff);
-    if (!(end_str = (*stuff) == '!'))
-      rec += (*stuff);
-    delete stuff;
+    while (!radio.read( stuff, BUFFER_SIZE )){}//wait transmission done and receive data.
+    unsigned int i = 0;
+    while (i < BUFFER_SIZE && !(end_str = stuff[i] == '!'))
+      rec += stuff[i++];
+    memset(stuff, 0, BUFFER_SIZE);
   }//if-available
   if (end_str) {
+    digitalWrite(LED_ON, HIGH);
     current_line = rec.charAt(0) - '0';
     digitalWrite(LED_ALERT, !((current_line == 0 && previous_line == 4) || (current_line == previous_line+1))); //are you sure to be brave enough? :)
     previous_line = current_line;
     scan_str();
     rec = "";
     end_str = false;
+    digitalWrite(LED_ON, LOW);
   }//if
 }//loop
 
