@@ -22,7 +22,6 @@ void setup()
 void loop() 
 {
     if (stringComplete){
-      Serial.println("finito");
       unsigned char status = SPI_Read(STATUS);                   // read register STATUS's value
       if(status&TX_DS)                                           // if receive data ready (TX_DS) interrupt
       {
