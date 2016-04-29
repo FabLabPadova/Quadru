@@ -1,34 +1,15 @@
 #include <Servo.h>
 #include "NRF24L01.h"
-#include "utility.h"
+#include "Quadru.h"
 
+#include "utility.h"
 #define DIM_GROUP 3
-#define NUMBER_LEG 4
-#define NUMBER_PART_LEG 3
 #define NUMBER_SEL 4
 #define PIN_SERVO 6
 
 const int SEL_DEMUX[NUMBER_SEL] = {2,3,4,5};
 
-enum Quadru_Part_type {FEMORE = 0, TIBIA = 1, ROTAZIONE = 2};
-
-struct Quadru_Part_Leg{
-  Quadru_Part_type type;
-  unsigned int micro_s_angle;
-  unsigned int * sel_combo;
-  int offset_target;
-};
-
-struct Quadru_Leg{
-  Quadru_Part_Leg leg_parts[NUMBER_PART_LEG];
-};
-
-struct Quadru{
-  Quadru_Leg leg[NUMBER_LEG];
-};
-
 unsigned char rx_buf[TX_PLOAD_WIDTH];
-
 String rec = "";
 bool end_str = false;
 Servo ser_mux;
@@ -54,7 +35,8 @@ void setup(){
   Serial.println(status, HEX);     // There is read the mode’s status register, the default value should be ‘E’
   Serial.println("RX_Mode start...");
   RX_Mode();                        // set RX mode
-}
+}//setup
+
 void loop() {
   unsigned char status = SPI_Read(STATUS);                         // read register STATUS's value
   if (status & RX_DR) {                                             // if receive data ready (TX_DS) interrupt
@@ -71,7 +53,7 @@ void loop() {
     }//if
   }//if-status
   SPI_RW_Reg(WRITE_REG + STATUS, status);                          // clear RX_DR or TX_DS or MAX_RT interrupt flag
-}
+}//loop
 
 //Scan rec string. Every 3 character function captures string and convert hex to dec.
 void scan_str() {
@@ -111,34 +93,4 @@ void activeServo (const unsigned int * sel, unsigned int micro_s_angle){
     digitalWrite(SEL_DEMUX[i], sel[i]);
   ser_mux.writeMicroseconds(micro_s_angle);
 }//activeServo
-
-void print_quadru_details(Quadru *qp) {
-  for (int i = 0; i < NUMBER_LEG; i++) {
-    Serial.print("Gamba : ");
-    Serial.println(i);
-    print_single_leg_part(qp->leg[i]);
-    Serial.println("***");
-  }//for
-}//printQuadruDetails
-
-void print_single_leg_part(Quadru_Leg lp){
-  for (int i = 0; i < NUMBER_PART_LEG; i++){
-    Serial.print("Part : ");
-    String spart;
-    switch (lp.leg_parts[i].type) {
-      case (FEMORE):
-        spart = "femore ";
-        break;
-      case (TIBIA):
-        spart = "tibia ";
-        break;
-      case (ROTAZIONE):
-        spart = "rotazione ";
-        break;
-    }//switch
-    Serial.println(spart);
-    Serial.print("Microseconds Angle : ");
-    Serial.println(lp.leg_parts[i].micro_s_angle);
-  }
-}//printSingleLegPart
 
