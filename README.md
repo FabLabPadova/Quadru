@@ -16,6 +16,7 @@ Ardulab Community wants to improve step by step Quadru project and we have no li
 # List of materials
 
 12 x Servo Motor : http://goo.gl/23SuU9
+
 2 x NRF24L01+PA+LNA (PA-IPX) : http://goo.gl/ZHZFpz
 
 #Simulator
