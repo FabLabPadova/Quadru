@@ -13,9 +13,11 @@ Ardulab Community wants to improve step by step Quadru project and we have no li
 - Quadru walking;
 - Quadru running -> this is the greatest thing we long for!
 
-# Links material
+# List of materials
 
-Servo Motor : http://goo.gl/23SuU9
+12 x Servo Motor : http://goo.gl/23SuU9
+
+2 x NRF24L01+PA+LNA (PA-IPX) : http://goo.gl/ZHZFpz
 
 #Simulator
 The simulator is developed by a Visual Basic Program.
