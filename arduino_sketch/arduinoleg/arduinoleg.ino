@@ -13,7 +13,7 @@ void setup() {
   Serial.begin(9600);
   for (int i=0; i<N_PART; i++)
     motor_leg[i].attach(pin_servo[i]);
-  Wire.begin();
+  Wire.begin(N_SLAVE);
   Wire.onReceive(receiveEvent);
 }//setup
 
