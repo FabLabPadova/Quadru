@@ -4,7 +4,6 @@
 #define NUMBER_LEG 4
 #define NUMBER_PART_LEG 3
 
-<<<<<<< HEAD
 enum Quadru_Part_type {FEMORE = 0, TIBIA = 1, ROTAZIONE = 2, FOO = 3};
 
 struct Quadru_Part_Leg{
@@ -27,7 +26,7 @@ void print_quadru_details(Quadru *qp);
 void print_single_leg_part(Quadru_Leg lp);
 
 #endif 
-=======
+
 enum Type_part_leg {FEMORE = 0, TIBIA = 1, ROTAZIONE = 2};
 
 struct Quadru_part{
@@ -49,4 +48,4 @@ void printQuadruInfo(Quadru * qp);
 void printQuadruLeg(Quadru_leg * qp);
 
 #endif
->>>>>>> dd320f9cb94fa59592450f4454cb9d9d4f5b4115
+
