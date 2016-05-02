@@ -74,8 +74,10 @@ void scan_str() {
 void sendToSlave (){
   for (unsigned int i=0; i<NUMBER_LEG; i++){
     Wire.beginTransmission(ql->leg[i].n_slave);
-    for (unsigned int j=0; j<NUMBER_PART_LEG; j++)
-      Wire.write((uint8_t)(ql->leg[i].leg_parts[j].micro_s_angle >> 8));
+    for (unsigned int j=0; j<NUMBER_PART_LEG; j++){
+      Wire.write((ql->leg[i].leg_parts[j].micro_s_angle) >> 8);
+      Wire.write((ql->leg[i].leg_parts[j].micro_s_angle) & 255);
+    }//for-j
     Wire.endTransmission();
   }//for-i
 }//sendToSlave
