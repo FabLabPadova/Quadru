@@ -66,13 +66,10 @@ void scan_str() {
     else
       cg++;
   }//for
-<<<<<<< HEAD
   if (digitalRead(PIN_DEBUG))
     print_quadru_details(ql);
   sendToSlave();
-=======
   printQuadruInfo(ql);
->>>>>>> dd320f9cb94fa59592450f4454cb9d9d4f5b4115
 }//scan_str
 
 void sendToSlave (){
