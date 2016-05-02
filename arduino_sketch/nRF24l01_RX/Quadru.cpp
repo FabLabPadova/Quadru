@@ -1,7 +1,6 @@
 #include "Quadru.h"
 #include "Arduino.h"
 
-<<<<<<< HEAD
 void print_quadru_details(Quadru *qp) {
   for (unsigned int i = 0; i < NUMBER_LEG; i++) {
     Serial.print("Gamba : ");
@@ -34,7 +33,7 @@ void print_single_leg_part(Quadru_Leg lp){
     Serial.println(lp.leg_parts[i].micro_s_angle);
   }
 }//printSingleLegPart
-=======
+
 void printQuadruInfo(Quadru * qp){
   for (unsigned int i = 0; i<NUMBER_LEG; i++){
     Serial.print("leg:");
@@ -66,4 +65,3 @@ void printQuadruLeg(Quadru_leg *ql){
       Serial.print("|");
     }//for-j
 }//printQuadruLeg
->>>>>>> dd320f9cb94fa59592450f4454cb9d9d4f5b4115
