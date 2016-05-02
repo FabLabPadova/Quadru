@@ -5,7 +5,7 @@
 #define N_PART 3
 
 const int pin_servo[N_PART] = {3,5,6};
-int rx_wire;
+int receivedValue;
 int servo_to_act = 0;
 Servo motor_leg[N_PART];
 
@@ -21,9 +21,10 @@ void loop() {}
 
 void receiveEvent (int howMany){
   while (Wire.available()){
-    rx_wire = Wire.read() << 8;
-    Serial.println(rx_wire);
-    motor_leg[servo_to_act].writeMicroseconds(rx_wire);
+    int receivedValue = Wire.read() << 8;
+    receivedValue |= Wire.read();
+    Serial.println(receivedValue);
+    motor_leg[servo_to_act].writeMicroseconds(receivedValue);
     servo_to_act = (servo_to_act == N_PART-1) ? (0) : (servo_to_act+1);
   }//receiveEvent
 }//receiveEvent
