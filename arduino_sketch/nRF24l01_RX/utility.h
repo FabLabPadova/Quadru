@@ -8,11 +8,4 @@
 */
 unsigned int conv_hex_to_dec(const char *shex, const unsigned int len);
 
-/*
-  IV: n int number to convert.
-  IV: len length of final array.
-  OR: correspondent array bit rappresentation of n with len length.
-*/
-unsigned int * conv_number_array_bin(const int n, const unsigned int len);
-
 #endif 

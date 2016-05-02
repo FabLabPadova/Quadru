@@ -1,13 +1,12 @@
+#include <Wire.h>
 #include <Servo.h>
 #include "NRF24L01.h"
 #include "Quadru.h"
-
 #include "utility.h"
-#define DIM_GROUP 3
-#define NUMBER_SEL 4
-#define PIN_SERVO 6
 
-const int SEL_DEMUX[NUMBER_SEL] = {2,3,4,5};
+#define DIM_GROUP 3
+#define PIN_SERVO 6
+#define PIN_DEBUG 4
 
 unsigned char rx_buf[TX_PLOAD_WIDTH];
 String rec = "";
@@ -16,18 +15,14 @@ Servo ser_mux;
 Quadru* ql = new Quadru();
 
 void setup(){
+  Wire.begin();
+  pinMode(PIN_DEBUG, INPUT_PULLUP);
   ser_mux.attach(PIN_SERVO);
-  //Set output demux selectors.
-  for (unsigned int i=0; i<NUMBER_SEL; i++)
-    pinMode(SEL_DEMUX[i], OUTPUT);
-  unsigned n_motor = 0;
-  //Initialize selectors for each parts.
-  for (unsigned int i=0; i<NUMBER_LEG; i++)
-    for (unsigned int j=0; j<NUMBER_PART_LEG; j++)
-      ql->leg[i].leg_parts[j].sel_combo = conv_number_array_bin(n_motor++, NUMBER_SEL);
+  //Set slave number
+  for (int i=0; i<NUMBER_LEG; i++)
+    ql->leg[i].n_slave = i;
   SPI_DIR = (CE + SCK + CSN + MOSI);
   SPI_DIR &= ~ (IRQ + MISO);
-  //  attachInterrupt(1, _ISR, LOW); // interrupt enable
   init_io();                        // Initialize IO port
   unsigned char status = SPI_Read(STATUS);
   Serial.begin(9600);
@@ -46,7 +41,6 @@ void loop() {
     while (i < TX_PLOAD_WIDTH && !(end_str = rx_buf[i] == '!'))
       rec += (char)rx_buf[i++];
     if (end_str) {
-      //Serial.println(rec);
       scan_str();
       rec = "";
       end_str = false;
@@ -59,38 +53,46 @@ void loop() {
 void scan_str() {
   char group[DIM_GROUP];
   unsigned int cg = 0, nleg = 0;
-  int count_part = -1;
+  int count_part = 0;
   for (unsigned int i = 2; i < rec.length(); i++) {
     group[cg] = rec.charAt(i);
     if ((i - 1) % DIM_GROUP == 0) {
-      count_part++;
-      unsigned int indexOfPart = count_part;
-      switch (count_part) {
-        case (0):
-          ql->leg[nleg].leg_parts[0].type = FEMORE;
-          break;
-        case (1):
-          ql->leg[nleg].leg_parts[1].type = TIBIA;
-          break;
-        case (2):
-          ql->leg[nleg].leg_parts[2].type = ROTAZIONE;
-          count_part = -1;
-          break;
-      }//switch
-      ql->leg[nleg].leg_parts[indexOfPart].micro_s_angle = conv_hex_to_dec(group, DIM_GROUP);
-      activeServo(ql->leg[nleg].leg_parts[indexOfPart].sel_combo, ql->leg[nleg].leg_parts[indexOfPart].micro_s_angle);
-      cg = 0;
+      ql->leg[nleg].leg_parts[count_part].type = getTypeFromInt(count_part);
+      ql->leg[nleg].leg_parts[count_part].micro_s_angle = conv_hex_to_dec(group, DIM_GROUP);
+      count_part = (count_part == 2) ? (0) : (count_part + 1);
       nleg += ((i - 1) % (DIM_GROUP * 3) == 0);
+      cg = 0;
     }//if
     else
       cg++;
   }//for
-  //print_quadru_details(ql);
+  if (digitalRead(PIN_DEBUG))
+    print_quadru_details(ql);
+  sendToSlave();
 }//scan_str
 
-void activeServo (const unsigned int * sel, unsigned int micro_s_angle){
-  for (unsigned int i = 0; i<NUMBER_SEL; i++)
-    digitalWrite(SEL_DEMUX[i], sel[i]);
-  ser_mux.writeMicroseconds(micro_s_angle);
-}//activeServo
+void sendToSlave (){
+  for (unsigned int i=0; i<NUMBER_LEG; i++){
+    Wire.beginTransmission(ql->leg[i].n_slave);
+    for (unsigned int j=0; j<NUMBER_PART_LEG; j++)
+      Wire.write((uint8_t)(ql->leg[i].leg_parts[j].micro_s_angle >> 8));
+    Wire.endTransmission();
+  }//for-i
+}//sendToSlave
+
+Quadru_Part_type getTypeFromInt (int n){
+  Quadru_Part_type tret = FOO;
+  switch (n) {
+    case (0):
+      tret = FEMORE;
+      break;
+    case (1):
+      tret = TIBIA;
+      break;
+    case (2):
+      tret = ROTAZIONE;
+      break;
+   }//switch
+   return tret;
+}//getTypeFromInt
 
