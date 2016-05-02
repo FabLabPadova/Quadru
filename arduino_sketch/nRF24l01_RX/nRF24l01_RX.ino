@@ -25,7 +25,7 @@ void setup(){
   SPI_DIR &= ~ (IRQ + MISO);
   init_io();                        // Initialize IO port
   unsigned char status = SPI_Read(STATUS);
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.print("status = ");
   Serial.println(status, HEX);     // There is read the mode’s status register, the default value should be ‘E’
   Serial.println("RX_Mode start...");
@@ -66,9 +66,13 @@ void scan_str() {
     else
       cg++;
   }//for
+<<<<<<< HEAD
   if (digitalRead(PIN_DEBUG))
     print_quadru_details(ql);
   sendToSlave();
+=======
+  printQuadruInfo(ql);
+>>>>>>> dd320f9cb94fa59592450f4454cb9d9d4f5b4115
 }//scan_str
 
 void sendToSlave (){
