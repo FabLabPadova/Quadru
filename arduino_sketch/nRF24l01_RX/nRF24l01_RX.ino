@@ -67,9 +67,8 @@ void scan_str() {
       cg++;
   }//for
   if (digitalRead(PIN_DEBUG))
-    print_quadru_details(ql);
+    printQuadruInfo(ql);
   sendToSlave();
-  printQuadruInfo(ql);
 }//scan_str
 
 void sendToSlave (){
@@ -92,6 +91,9 @@ Quadru_Part_type getTypeFromInt (int n){
       break;
     case (2):
       tret = ROTAZIONE;
+      break;
+    case (3):
+      tret = FOO;
       break;
    }//switch
    return tret;

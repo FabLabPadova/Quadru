@@ -6,36 +6,13 @@
 
 enum Quadru_Part_type {FEMORE = 0, TIBIA = 1, ROTAZIONE = 2, FOO = 3};
 
-struct Quadru_Part_Leg{
-  Quadru_Part_type type;
-  unsigned int micro_s_angle;
-  int offset_target = 0;
-};
-
-struct Quadru_Leg{
-  int n_slave;
-  Quadru_Part_Leg leg_parts[NUMBER_PART_LEG];
-};
-
-struct Quadru{
-  Quadru_Leg leg[NUMBER_LEG];
-};
-
-void print_quadru_details(Quadru *qp);
-
-void print_single_leg_part(Quadru_Leg lp);
-
-#endif 
-
-enum Type_part_leg {FEMORE = 0, TIBIA = 1, ROTAZIONE = 2};
-
 struct Quadru_part{
-  Type_part_leg type;
-  unsigned int * sel_combo;
+  Quadru_Part_type type;
   unsigned int micro_s_angle;
 };
 
 struct Quadru_leg{
+  int n_slave;
   Quadru_part leg_parts[NUMBER_PART_LEG];
 };
 
