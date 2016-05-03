@@ -10,7 +10,6 @@ int servo_to_act = 0;
 Servo motor_leg[N_PART];
 
 void setup() {
-  Serial.begin(9600);
   for (int i=0; i<N_PART; i++)
     motor_leg[i].attach(pin_servo[i]);
   Wire.begin(N_SLAVE);
@@ -23,7 +22,6 @@ void receiveEvent (int howMany){
   while (Wire.available()){
     int receivedValue = Wire.read() << 8;
     receivedValue |= Wire.read();
-    Serial.println(receivedValue);
     motor_leg[servo_to_act].writeMicroseconds(receivedValue);
     servo_to_act = (servo_to_act == N_PART-1) ? (0) : (servo_to_act+1);
   }//receiveEvent
