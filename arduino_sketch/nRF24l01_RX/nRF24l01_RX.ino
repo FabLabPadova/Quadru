@@ -54,7 +54,8 @@ void scan_str() {
   char group[DIM_GROUP];
   unsigned int cg = 0, nleg = 0;
   int count_part = 0;
-  for (unsigned int i = 2; i < rec.length(); i++) {
+  //Start from 5 because first three characters are timing.
+  for (unsigned int i = 5; i < rec.length(); i++) {
     group[cg] = rec.charAt(i);
     if ((i - 1) % DIM_GROUP == 0) {
       ql->leg[nleg].leg_parts[count_part].type = getTypeFromInt(count_part);
