@@ -1,7 +1,5 @@
-﻿Imports System
-Imports System.Threading
+﻿Imports System.Threading
 Imports System.IO.Ports.SerialPort
-Imports System.Diagnostics
 
 Public Class Form1
 
@@ -796,18 +794,38 @@ Public Class Form1
         InviaDatiRobot()
     End Sub
     Sub InviaDatiRobot()
+        Dim datiInChiaro As String = Trim(Str(counterSend)) & ":"
         Dim dati As String = Trim(Str(counterSend)) & ":"
         For i = 0 To 3
-            dati &= cmServo(angFemore(i)) & cmServo(angTibia(i)) & cmServo(angRotaz(i))
+            dati &= Replace(Hex(tmrCamminata.Interval).PadLeft(3), " ", "0") & cmServo(angFemore(i)) & cmServo(angTibia(i)) & cmServo(angRotaz(i))
+            datiInChiaro &= Str(tmrCamminata.Interval) & Str(Int(100 * angFemore(i) * 180 / Math.PI) / 100) & Str(Int(100 * angTibia(i) * 180 / Math.PI) / 100) & Str(Int(100 * angRotaz(i) * 180 / Math.PI) / 100)
         Next
         dati &= "!"
         If txtCom.Text <> "0" And Not dati = String.Empty Then
             SendSerialData(dati)
         End If
         Debug.Print(dati)
+        Debug.Print(datiInChiaro)
+    End Sub
+    Sub SendSerialData(ByVal data As String)
+
+        ' Send strings to a serial port.
+        Using com1 As IO.Ports.SerialPort =
+            My.Computer.Ports.OpenSerialPort("COM" & txtCom.Text, 9600, System.IO.Ports.Parity.None, 8, 1)
+            com1.Write(data)
+            If counterSend = 4 Then
+                counterSend = 0
+            Else
+                counterSend = counterSend + 1
+            End If
+            com1.Close()
+        End Using
     End Sub
 
-    Sub SendSerialData(ByVal data As String)
+    Public Function cmServo(ByVal angle As Double) As String
+        Return Hex(Math.Round(((angle * (180 / Math.PI)) + 90) * 1400 / 180) + 800)
+    End Function
+    Sub SendSerialData1(ByVal data As String)
 
         ' Send strings to a serial port.
         Using com1 As IO.Ports.SerialPort =
@@ -822,7 +840,7 @@ Public Class Form1
         End Using
     End Sub
 
-    Public Function cmServo(ByVal angle As Double) As String
+    Public Function cmServo1(ByVal angle As Double) As String
         Return Hex(Math.Round(((angle * 180 / Math.PI) * 1400 / 180) + 800))
     End Function
 
