@@ -4,10 +4,13 @@
 #define BUTTON_2    3  // pulsante rotazione oraria gradi 
 #define BUTTON_3    4  // pulsante rotazione antioraria con microsecondi
 #define BUTTON_4    5  // pulsante rotazione oraria con microsecondi
+#define GRADI_0 90
+#define GRADI_1 0
+#define GRADI_2 180
+#define MICROSEC1 700
+#define MICROSEC2 2300
 
 Servo Servo1;
-int gradi0 =  90, gradi1 = 0, gradi2 = 180 ;   
-int microsec1  = 700, microsec2  = 2300;
 int angle;
 
 void setup () {
@@ -19,28 +22,23 @@ void setup () {
   Servo1.attach(6, 700, 2350);      // Servo1 e' collegato al pin 6 , limiti minimi e massimi della durata degli impulsi ,
                                     // questo per non forzare il servo nelle due posizioni di finecorsa, si riduce il movimento
                                     // angolare
-  Servo1.write (gradi0);            // posizione iniziale del servo
+  Servo1.write (GRADI_0);           // posizione iniziale del servo
 }
-void loop () {
-  int puls1 = digitalRead(BUTTON_1);
-  int puls2 = digitalRead(BUTTON_2);
-  int puls3 = digitalRead(BUTTON_3);
-  int puls4 = digitalRead(BUTTON_4);
-  
+void loop () {  
   if (digitalRead(BUTTON_1) == HIGH){
-    Servo1.write (gradi1);
+    Servo1.write (GRADI_1);
     angle = Servo1.read();
     Serial.print("Angle position");
     Serial.println(angle);
   }else if (digitalRead(BUTTON_2) == HIGH){
-    Servo1.write (gradi2);
+    Servo1.write (GRADI_2);
     angle = Servo1.read();
     Serial.print("Angle position");
     Serial.println(angle);
   }else if (digitalRead(BUTTON_3) == HIGH)
-    Servo1.writeMicroseconds (microsec1);
+    Servo1.writeMicroseconds (MICROSEC1);
   else if (digitalRead(BUTTON_4) == HIGH)
-    Servo1.writeMicroseconds (microsec2);
+    Servo1.writeMicroseconds (MICROSEC2);
 
 
   /*  Serial.print("BUTTON_1");
