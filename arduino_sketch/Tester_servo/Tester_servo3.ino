@@ -55,7 +55,7 @@ void loop ()  {
   else if (digitalRead(BUTTON_4) == HIGH)
     Servo1.writeMicroseconds (MICROSEC2);
   else if (digitalRead(BUTTON_5) == HIGH){          // il servo si muove a step di un grado con la variabile passo
-    for(int passo = 0;passo < 180; passo += 1)      // da 0 a 180 , il valore verra' visualizzato sulla seriale
+    for(int passo = 0;passo < 180; passo++)      // da 0 a 180 , il valore verra' visualizzato sulla seriale
     {
       Servo1.write(passo);
     delay(20);
@@ -64,7 +64,7 @@ void loop ()  {
     Serial.println(angle); 
     }
     delay(500);
-    for(int passo = 180; passo >= 1; passo -= 1)
+    for(int passo = 180; passo >= 1; passo--)
     {
       Servo1.write(passo);
       angle = Servo1.read();
