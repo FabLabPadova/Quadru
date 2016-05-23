@@ -7,6 +7,7 @@
 #define DIM_GROUP 3
 #define PIN_SERVO 6
 #define PIN_DEBUG 4
+#define START_ELEMENT_LEG 5
 
 unsigned char rx_buf[TX_PLOAD_WIDTH];
 String rec = "";
@@ -55,14 +56,14 @@ void scan_str() {
   unsigned int cg = 0, nleg = 0;
   int count_part = 0;
   //Start from 5 because first three characters are timing.
-  for (unsigned int i = 5; i < rec.length(); i++) {
+  for (unsigned int i = START_ELEMENT_LEG; i < rec.length(); i++) {
     group[cg] = rec.charAt(i);
     if ((i - 1) % DIM_GROUP == 0) {
       ql->leg[nleg].leg_parts[count_part].type = getTypeFromInt(count_part);
       ql->leg[nleg].leg_parts[count_part].micro_s_angle = conv_hex_to_dec(group, DIM_GROUP);
       count_part = (count_part == 2) ? (0) : (count_part + 1);
       cg = 0;
-      nleg += ((i - 4) % (DIM_GROUP * 3) == 0);
+      nleg += ((i - START_ELEMENT_LEG-1) % (DIM_GROUP * 3) == 0);
     }//if
     else
       cg++;
