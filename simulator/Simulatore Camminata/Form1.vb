@@ -10,20 +10,25 @@ Public Class Form1
     Dim angInizFemore, angInizTibia, angFemore(3), angTibia(3), errX(3), errY(3), AltezzaTerra As Double
     Dim piedeSopraX(3), FemoreSopraX(3), TibiaSopraX(3), FemoreSopraY(3), TibiaSopraY(3), piedeSopraY(3) As Double
     Dim angFinalFemore, angFinalTibia, posxMaxAvanti, posxMaxIndietro, posxMinAvanti, posxMinIndietro, angMaxCurva As Double
-    Dim LunghezzaGamba, LunghezzaTibia, LunghezzaFemore, piedeBasso, curvatura, lungBacino, largBacino As Double
+    Dim LunghezzaGamba, LunghezzaTibia, LunghezzaFemore, piedeBasso, curvatura, lungBacino, largBacino, passoOld As Double
     Dim counterSend As Integer = 0
 
 
 
     Dim BarX, BarY, raggioTibia(3), raggioFemore(3), angoloCurva(3), faseCurva(3), angRotaz(3) As Double
+
+
+
     Dim posizione(3) As String
+
+
 
     Dim bprint, bPrint1, bPrima, bAlzo(3), bGiaAlzato(3) As Boolean
 
     Dim correzione, constX1, constY1, constK, varX As Double
     Dim constA, constB, constC, sporgGinocchio, velocAvanzamento, lunghPasso, pesoSuGamba As Double
     Dim cicliRitardoAlzo, cicliFatti, candidatoAlzo, candidatoAlzoCurva, contaAlzi, contaAlzati As Integer
-    Dim bCandidabile, bPiedeAlzato, bPrimoPasso, bCurva As Boolean
+    Dim bCandidabile, bPiedeAlzato, bPrimoPasso, bCurva, bAttenti As Boolean
     Public TPen As New System.Drawing.Pen(System.Drawing.Color.Black, 1)
     Public Fase(3), spess As Integer, color As Color
     Public lavGraphics As System.Drawing.Graphics
@@ -50,6 +55,76 @@ Public Class Form1
         TPen.Width = spess
         'TPen.Color = Color.Blue
         lavGraphics.DrawEllipse(TPen, Rect)
+    End Sub
+    Private Sub lstTestServo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstTestServo.SelectedIndexChanged
+        ' chkTestGamba_CheckedChanged(sender, e)
+    End Sub
+    Private Sub txtAngoloServo_TextChanged(sender As Object, e As EventArgs) Handles txtAngoloServo.TextChanged
+        ' chkTestGamba_CheckedChanged(sender, e)
+    End Sub
+    Private Sub txtTestGamba_TextChanged(sender As Object, e As EventArgs) Handles txtTestGamba.TextChanged
+        'chkTestGamba_CheckedChanged(sender, e)
+    End Sub
+    Private Sub chkTestGamba_CheckedChanged(sender As Object, e As EventArgs) Handles chkTestGamba.CheckedChanged
+        Dim gamba As Integer
+        Dim angolo As Double
+        If chkTestGamba.Checked = True And btnAttenti.Text = "Riposo!" Then
+            picFianco.Refresh()
+            picSopra.Refresh()
+            For i = 0 To 3
+                gamba = Val(txtTestGamba.Text)
+                angolo = Val(txtAngoloServo.Text * Math.PI / 180)
+                Select Case lstTestServo.SelectedItem
+                    Case "Femore"
+                        angFemore(gamba) = angolo
+                    Case "Tibia"
+                        angTibia(gamba) = angolo
+                    Case "Rotazione"
+                        angRotaz(gamba) = angolo
+                End Select
+                AggiornaTestGamba(i)
+                angFemore(gamba) = 0
+                angTibia(gamba) = 0
+                angRotaz(gamba) = 0
+            Next
+            chkTestGamba.Checked = False
+        End If
+
+
+
+    End Sub
+    Sub AggiornaTestGamba(gamba As Integer)
+        AggiornaCoordinate(gamba)
+        DisegnaGamba(gamba)
+        InviaDatiRobot()
+    End Sub
+    Sub AggiornaCoordinate(g As Integer)
+
+        TibiaX(g) = FemoreX(g) + LunghezzaFemore * Math.Sin(angFemore(g))
+        TibiaY(g) = FemoreY(g) + LunghezzaFemore * Math.Cos(angFemore(g))
+        piedeX(g) = TibiaX(g) + LunghezzaTibia * Math.Sin(angTibia(g))
+        piedeY(g) = TibiaY(g) + LunghezzaTibia * Math.Cos(angTibia(g)) - 4
+
+    End Sub
+    Private Sub btnAttenti_Click(sender As Object, e As EventArgs) Handles btnAttenti.Click
+        If btnstart.Text = "Start" Then
+            If btnAttenti.Text = "Attenti!" Then
+                btnAttenti.Text = "Riposo!"
+                passoOld = trkPasso.Value
+                trkPasso.Value = 0
+                ResetRobot()
+                InviaDatiRobot()
+            Else
+                btnAttenti.Text = "Attenti!"
+                trkPasso.Value = passoOld
+                chkTestGamba.Checked = False
+                ResetRobot()
+                InviaDatiRobot()
+                bAttenti = False
+            End If
+        End If
+        bAttenti = True
+
     End Sub
     Private Sub txtPeso_TextChanged(sender As Object, e As EventArgs) Handles txtPeso.TextChanged
         If LunghezzaGamba > 0 Then ResetRobot()
@@ -160,6 +235,8 @@ Public Class Form1
 
         chkForma.Top = lblDiscriminante.Top
         chkForma.Left = txtCom.Left + txtCom.Width + 30
+        btnAttenti.Top = chkForma.Top
+        btnAttenti.Left = chkForma.Left + chkForma.Width + 30
         trkVelAlzo.Left = btnstart.Left
         trkPasso.Left = trkVelAlzo.Left
         trkSpinta.Left = trkVelAlzo.Left
@@ -214,6 +291,21 @@ Public Class Form1
         lblTibia.Text = "Lungh Tibia cm " & Str(trktibia.Value)
         lblRitardoAlzo.Text = "Ritardo Alzata " & Str(trkRitardoAlzo.Value)
         lblTimer.Text = "Timer ms/tick " & Str(trkTimer.Value)
+        chkTestGamba.Top = trkLarghezza.Top
+        chkTestGamba.Left = lblLarghezza.Left + lblLarghezza.Width + 80
+        lblServo.Top = chkTestGamba.Top + chkTestGamba.Height + 8
+        lblServo.Left = chkTestGamba.Left + 53
+        lblAngolo.Top = lblServo.Top + lstTestServo.Height + 8
+        lblAngolo.Left = lblServo.Left
+        txtTestGamba.Top = chkTestGamba.Top
+        txtTestGamba.Left = chkTestGamba.Left + chkTestGamba.Width + 20
+
+        txtAngoloServo.Top = lblAngolo.Top
+        txtAngoloServo.Left = txtTestGamba.Left
+
+        lstTestServo.Top = lblServo.Top
+        lstTestServo.Left = txtTestGamba.Left
+
         posizione(0) = "avanti"
         posizione(1) = "avanti"
         posizione(2) = "dietro"
@@ -221,7 +313,11 @@ Public Class Form1
     End Sub
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
         If btnstart.Text = "Start" Then
-
+            If bAttenti = True Then
+                trkPasso.Value = passoOld
+                ResetRobot()
+                bAttenti = False
+            End If
             btnstart.Text = "Stop"
             StartAnimazione()
         Else
@@ -296,6 +392,7 @@ Public Class Form1
 
         btnSopra.Visible = False
         LunghezzaTibia = LunghezzaGamba * trktibia.Value / (trktibia.Value + trkFermore.Value)
+        a = LunghezzaTibia / trktibia.Value
         LunghezzaFemore = LunghezzaGamba * trkFermore.Value / (trktibia.Value + trkFermore.Value)
         sporgGinocchio = LunghezzaGamba * trkPasso.Value / (trktibia.Value + trkFermore.Value)
         pesoSuGamba = Val(txtPeso.Text) / 3000
@@ -623,11 +720,8 @@ Public Class Form1
         'errX(0) = errX(1)
         angFemore(g) = Math.Asin((TibiaX(g) - FemoreX(g)) / LunghezzaFemore)
         angTibia(g) = Math.Asin((piedeX(g) - TibiaX(g)) / LunghezzaTibia)
+        AggiornaCoordinate(g)
 
-        TibiaX(g) = FemoreX(g) + LunghezzaFemore * Math.Sin(angFemore(g))
-        TibiaY(g) = FemoreY(g) + LunghezzaFemore * Math.Cos(angFemore(g))
-        piedeX(g) = TibiaX(g) + LunghezzaTibia * Math.Sin(angTibia(g))
-        piedeY(g) = TibiaY(g) + LunghezzaTibia * Math.Cos(angTibia(g)) - 4
 
     End Sub
     Sub DisegnaGamba(g As Short)
@@ -794,11 +888,15 @@ Public Class Form1
         InviaDatiRobot()
     End Sub
     Sub InviaDatiRobot()
-        Dim datiInChiaro As String = Trim(Str(counterSend)) & ":"
-        Dim dati As String = Trim(Str(counterSend)) & ":"
+        Dim datiAngoli As String = Trim(Str(counterSend)) & ":" & Str(tmrCamminata.Interval)
+        Dim datiInChiaro As String = Trim(Str(counterSend)) & ":" & Str(tmrCamminata.Interval)
+        Dim dati As String = Trim(Str(counterSend)) & ":" & Replace(Hex(tmrCamminata.Interval).PadLeft(3), " ", "0")
         For i = 0 To 3
-            dati &= Replace(Hex(tmrCamminata.Interval).PadLeft(3), " ", "0") & cmServo(angFemore(i)) & cmServo(angTibia(i)) & cmServo(angRotaz(i))
-            datiInChiaro &= Str(tmrCamminata.Interval) & Str(Int(100 * angFemore(i) * 180 / Math.PI) / 100) & Str(Int(100 * angTibia(i) * 180 / Math.PI) / 100) & Str(Int(100 * angRotaz(i) * 180 / Math.PI) / 100)
+            dati &= cmServo(angFemore(i)) & cmServo(angTibia(i)) & cmServo(angRotaz(i))
+            'dati &= "?" & cmServo(angFemore(i)) & cmServo(angTibia(i)) & cmServo(angRotaz(i))
+            datiInChiaro &= Str(Math.Round(((angFemore(i) * (180 / Math.PI)) + 90) * 1400 / 180) + 800) & Str(Math.Round(((angTibia(i) * (180 / Math.PI)) + 90) * 1400 / 180) + 800) & Str(Math.Round(((angRotaz(i) * (180 / Math.PI)) + 90) * 1400 / 180) + 800)
+            datiAngoli &= Str(Math.Round(angFemore(i) * (180 / Math.PI), 1)) & Str(Math.Round(angTibia(i) * (180 / Math.PI), 1)) & Str(Math.Round(angRotaz(i) * (180 / Math.PI), 1))
+
         Next
         dati &= "!"
         If txtCom.Text <> "0" And Not dati = String.Empty Then
@@ -806,6 +904,7 @@ Public Class Form1
         End If
         Debug.Print(dati)
         Debug.Print(datiInChiaro)
+        Debug.Print(datiAngoli)
     End Sub
     Sub SendSerialData(ByVal data As String)
 

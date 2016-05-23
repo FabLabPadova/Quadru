@@ -64,6 +64,13 @@ Partial Class Form1
         Me.txtPeso = New System.Windows.Forms.TextBox()
         Me.lblCom = New System.Windows.Forms.Label()
         Me.txtCom = New System.Windows.Forms.TextBox()
+        Me.btnAttenti = New System.Windows.Forms.Button()
+        Me.chkTestGamba = New System.Windows.Forms.CheckBox()
+        Me.lblServo = New System.Windows.Forms.Label()
+        Me.lblAngolo = New System.Windows.Forms.Label()
+        Me.txtAngoloServo = New System.Windows.Forms.TextBox()
+        Me.txtTestGamba = New System.Windows.Forms.TextBox()
+        Me.lstTestServo = New System.Windows.Forms.ListBox()
         CType(Me.picFianco, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picSopra, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.trkVelAlzo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +107,7 @@ Partial Class Form1
         '
         'tmrCamminata
         '
+        Me.tmrCamminata.Interval = 1000
         '
         'trkVelAlzo
         '
@@ -147,7 +155,7 @@ Partial Class Form1
         Me.trkSpinta.Name = "trkSpinta"
         Me.trkSpinta.Size = New System.Drawing.Size(162, 56)
         Me.trkSpinta.TabIndex = 6
-        Me.trkSpinta.Value = 5
+        Me.trkSpinta.Value = 4
         '
         'lblSpinta
         '
@@ -251,7 +259,7 @@ Partial Class Form1
         '
         'btnBaricentro
         '
-        Me.btnBaricentro.Location = New System.Drawing.Point(430, 236)
+        Me.btnBaricentro.Location = New System.Drawing.Point(497, 223)
         Me.btnBaricentro.Name = "btnBaricentro"
         Me.btnBaricentro.Size = New System.Drawing.Size(5, 5)
         Me.btnBaricentro.TabIndex = 18
@@ -332,7 +340,7 @@ Partial Class Form1
         '
         'btnBaricentro1
         '
-        Me.btnBaricentro1.Location = New System.Drawing.Point(465, 236)
+        Me.btnBaricentro1.Location = New System.Drawing.Point(525, 223)
         Me.btnBaricentro1.Name = "btnBaricentro1"
         Me.btnBaricentro1.Size = New System.Drawing.Size(5, 5)
         Me.btnBaricentro1.TabIndex = 27
@@ -361,7 +369,7 @@ Partial Class Form1
         'lblCurva
         '
         Me.lblCurva.AutoSize = True
-        Me.lblCurva.Location = New System.Drawing.Point(548, 323)
+        Me.lblCurva.Location = New System.Drawing.Point(479, 323)
         Me.lblCurva.Name = "lblCurva"
         Me.lblCurva.Size = New System.Drawing.Size(198, 17)
         Me.lblCurva.TabIndex = 30
@@ -436,11 +444,81 @@ Partial Class Form1
         Me.txtCom.TabIndex = 38
         Me.txtCom.Text = "0"
         '
+        'btnAttenti
+        '
+        Me.btnAttenti.Location = New System.Drawing.Point(1034, 72)
+        Me.btnAttenti.Name = "btnAttenti"
+        Me.btnAttenti.Size = New System.Drawing.Size(74, 34)
+        Me.btnAttenti.TabIndex = 39
+        Me.btnAttenti.Text = "Attenti!"
+        Me.btnAttenti.UseVisualStyleBackColor = True
+        '
+        'chkTestGamba
+        '
+        Me.chkTestGamba.AutoSize = True
+        Me.chkTestGamba.Location = New System.Drawing.Point(37, 388)
+        Me.chkTestGamba.Name = "chkTestGamba"
+        Me.chkTestGamba.Size = New System.Drawing.Size(108, 21)
+        Me.chkTestGamba.TabIndex = 40
+        Me.chkTestGamba.Text = "Test Gamba"
+        Me.chkTestGamba.UseVisualStyleBackColor = True
+        '
+        'lblServo
+        '
+        Me.lblServo.AutoSize = True
+        Me.lblServo.Location = New System.Drawing.Point(10, 2)
+        Me.lblServo.Name = "lblServo"
+        Me.lblServo.Size = New System.Drawing.Size(45, 17)
+        Me.lblServo.TabIndex = 41
+        Me.lblServo.Text = "Servo"
+        '
+        'lblAngolo
+        '
+        Me.lblAngolo.AutoSize = True
+        Me.lblAngolo.Location = New System.Drawing.Point(61, 2)
+        Me.lblAngolo.Name = "lblAngolo"
+        Me.lblAngolo.Size = New System.Drawing.Size(52, 17)
+        Me.lblAngolo.TabIndex = 42
+        Me.lblAngolo.Text = "Angolo"
+        '
+        'txtAngoloServo
+        '
+        Me.txtAngoloServo.Location = New System.Drawing.Point(195, 334)
+        Me.txtAngoloServo.Name = "txtAngoloServo"
+        Me.txtAngoloServo.Size = New System.Drawing.Size(35, 22)
+        Me.txtAngoloServo.TabIndex = 43
+        Me.txtAngoloServo.Text = "0"
+        '
+        'txtTestGamba
+        '
+        Me.txtTestGamba.Location = New System.Drawing.Point(47, 336)
+        Me.txtTestGamba.Name = "txtTestGamba"
+        Me.txtTestGamba.Size = New System.Drawing.Size(23, 22)
+        Me.txtTestGamba.TabIndex = 45
+        Me.txtTestGamba.Text = "0"
+        '
+        'lstTestServo
+        '
+        Me.lstTestServo.FormattingEnabled = True
+        Me.lstTestServo.ItemHeight = 16
+        Me.lstTestServo.Items.AddRange(New Object() {"Femore", "Tibia", "Rotazione"})
+        Me.lstTestServo.Location = New System.Drawing.Point(91, 334)
+        Me.lstTestServo.Name = "lstTestServo"
+        Me.lstTestServo.Size = New System.Drawing.Size(98, 52)
+        Me.lstTestServo.TabIndex = 46
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1157, 421)
+        Me.Controls.Add(Me.lstTestServo)
+        Me.Controls.Add(Me.txtTestGamba)
+        Me.Controls.Add(Me.txtAngoloServo)
+        Me.Controls.Add(Me.lblAngolo)
+        Me.Controls.Add(Me.lblServo)
+        Me.Controls.Add(Me.chkTestGamba)
+        Me.Controls.Add(Me.btnAttenti)
         Me.Controls.Add(Me.txtCom)
         Me.Controls.Add(Me.lblCom)
         Me.Controls.Add(Me.txtPeso)
@@ -540,4 +618,11 @@ Partial Class Form1
     Friend WithEvents txtPeso As TextBox
     Friend WithEvents lblCom As Label
     Friend WithEvents txtCom As TextBox
+    Friend WithEvents btnAttenti As Button
+    Friend WithEvents chkTestGamba As CheckBox
+    Friend WithEvents lblServo As Label
+    Friend WithEvents lblAngolo As Label
+    Friend WithEvents txtAngoloServo As TextBox
+    Friend WithEvents txtTestGamba As TextBox
+    Friend WithEvents lstTestServo As ListBox
 End Class

@@ -9,14 +9,3 @@ C:\Users\cormo_000\Desktop\Camminata curva2\Camminata curva1\Simulatore Camminat
 C:\Users\cormo_000\Desktop\Camminata curva2\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
 C:\Users\cormo_000\Desktop\Camminata curva2\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
 C:\Users\cormo_000\Desktop\Camminata curva2\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe.config
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.exe
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.xml
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.pdb
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.exe
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.pdb
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\bin\Debug\Simulatore Camminata.xml
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbprojResolveAssemblyReference.cache
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Form1.resources
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore_Camminata.Resources.resources
-C:\Users\giusti\Downloads\Camminata curva1\Camminata curva1\Simulatore Camminata\obj\Debug\Simulatore Camminata.vbproj.GenerateResource.Cache
