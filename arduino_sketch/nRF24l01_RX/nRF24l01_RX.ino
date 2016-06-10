@@ -63,13 +63,16 @@ void scan_str() {
       ql->leg[nleg].leg_parts[count_part].micro_s_angle = conv_hex_to_dec(group, DIM_GROUP);
       count_part = (count_part == 2) ? (0) : (count_part + 1);
       cg = 0;
-      nleg += ((i - START_ELEMENT_LEG-1) % (DIM_GROUP * 3) == 0);
+      nleg += ((i - (START_ELEMENT_LEG-1)) % (DIM_GROUP * 3) == 0);
     }//if
     else
       cg++;
   }//for
-  if (digitalRead(PIN_DEBUG))
+  if (digitalRead(PIN_DEBUG)){
+    Serial.print("Stringa : ");
+    Serial.println(rec);
     printQuadruInfo(ql);
+  }//if-debug
   sendToSlave();
 }//scan_str
 
