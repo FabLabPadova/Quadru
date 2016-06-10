@@ -5,20 +5,17 @@
 #include "utility.h"
 
 #define DIM_GROUP 3
-#define PIN_SERVO 6
 #define PIN_DEBUG 4
 #define START_ELEMENT_LEG 5
 
 unsigned char rx_buf[TX_PLOAD_WIDTH];
 String rec = "";
 bool end_str = false;
-Servo ser_mux;
 Quadru* ql = new Quadru();
 
 void setup(){
   Wire.begin();
   pinMode(PIN_DEBUG, INPUT_PULLUP);
-  ser_mux.attach(PIN_SERVO);
   //Set slave number
   for (int i=0; i<NUMBER_LEG; i++)
     ql->leg[i].n_slave = i;
