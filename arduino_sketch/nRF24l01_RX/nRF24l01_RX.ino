@@ -1,3 +1,4 @@
+#include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 #include <Servo.h>
 #include "NRF24L01.h"
@@ -8,6 +9,7 @@
 #define PIN_DEBUG 4
 #define START_ELEMENT_LEG 5
 
+LiquidCrystal_I2C lcd(0x27, 16, 4);
 unsigned char rx_buf[TX_PLOAD_WIDTH];
 String rec = "";
 bool end_str = false;
@@ -15,6 +17,7 @@ Quadru* ql = new Quadru();
 
 void setup(){
   Wire.begin();
+  lcd.begin();
   pinMode(PIN_DEBUG, INPUT_PULLUP);
   //Set slave number
   for (int i=0; i<NUMBER_LEG; i++)
@@ -22,12 +25,25 @@ void setup(){
   SPI_DIR = (CE + SCK + CSN + MOSI);
   SPI_DIR &= ~ (IRQ + MISO);
   init_io();                        // Initialize IO port
-  unsigned char status = SPI_Read(STATUS);
+  unsigned char status_rf = SPI_Read(STATUS);
   Serial.begin(115200);
   Serial.print("status = ");
-  Serial.println(status, HEX);     // There is read the mode’s status register, the default value should be ‘E’
+  Serial.println(status_rf, HEX);     // There is read the mode’s status register, the default value should be ‘E’
   Serial.println("RX_Mode start...");
   RX_Mode();                        // set RX mode
+  lcd.print("Status : ");
+  lcd.print(status_rf);
+  lcd.setCursor(0,2);
+  lcd.print("Quadru ");
+  if (status_rf == 14)
+    lcd.print("ready");
+  else{
+    lcd.print("not ready");
+    lcd.setCursor(0,3);
+    lcd.print("Error in Communication");
+    while (1) {}
+  }
+  delay(2000);
 }//setup
 
 void loop() {
@@ -38,7 +54,7 @@ void loop() {
     unsigned int i = 0;
     while (i < TX_PLOAD_WIDTH && !(end_str = rx_buf[i] == '!'))
       rec += (char)rx_buf[i++];
-    if (end_str) {
+    if (end_str) { //elaborate string.
       scan_str();
       rec = "";
       end_str = false;
@@ -68,7 +84,7 @@ void scan_str() {
   if (digitalRead(PIN_DEBUG)){
     Serial.print("Stringa : ");
     Serial.println(rec);
-    printQuadruInfo(ql);
+    printQuadruInfo(ql, lcd);
   }//if-debug
   sendToSlave();
 }//scan_str

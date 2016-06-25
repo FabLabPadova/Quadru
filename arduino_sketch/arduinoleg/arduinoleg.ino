@@ -6,6 +6,7 @@
 #define ANGLE_OPPOSITE 2
 #define ORIGIN 1500
 
+const int offset_part[N_PART] = {80, 20, 10};
 const int pin_servo[N_PART] = {3,5,6};
 int receivedValue;
 int servo_to_act = 0;
@@ -27,10 +28,8 @@ void receiveEvent (int howMany){
     receivedValue |= Wire.read();
     if (servo_to_act != 2){
       if (digitalRead(ANGLE_OPPOSITE)){
-        receivedValue = (ORIGIN * 2) - receivedValue;
-        Serial.println("inverti");
-      }
-        
+        receivedValue = (ORIGIN * 2) - (receivedValue+offset_part[servo_to_act]);
+      }  
     }//if
     motor_leg[servo_to_act].writeMicroseconds(receivedValue);
     servo_to_act = (servo_to_act == N_PART-1) ? (0) : (servo_to_act+1);
