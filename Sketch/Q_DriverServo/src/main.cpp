@@ -1,30 +1,35 @@
-#define I2C_SLAVE_ADDRESS 20
+#define I2C_SLAVE_ADDRESS 0x01
 #include <TinyWireS.h>
 #include <Arduino.h>
 #include <SoftwareServo.h>
+#define DELAY_SERVO 2.5
 
 uint16_t reg_position;
 SoftwareServo servo1;
 byte time_received = 0;
+uint64_t timer1 = 0;
 
 void receiveEvent(uint8_t howMany);
 
 void setup()
 {
-  pinMode(3, OUTPUT); // OC1B-, Arduino pin 3, ADC
   digitalWrite(3, LOW); // Note that this makes the led turn on, it's wire this way to allow for the voltage sensing above.
-  pinMode(1, OUTPUT); // OC1A, also The only HW-PWM -pin supported by the tiny core analogWrite
   servo1.attach(1);
-  servo1.write(90);
+  servo1.writeMicroseconds(1500);
   servo1.refresh();
   delay(2000);
 
   TinyWireS.begin(I2C_SLAVE_ADDRESS);
   TinyWireS.onReceive(receiveEvent);
+  timer1 = millis();
 }
 
 void loop()
 {
+  if (millis() - timer1 > DELAY_SERVO ){
+    servo1.refresh();
+    timer1 = millis();
+  }//if-timer
   TinyWireS_stop_check();
 }
 
