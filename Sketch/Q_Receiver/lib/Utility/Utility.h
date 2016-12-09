@@ -8,4 +8,4 @@
 */
 unsigned int conv_hex_to_dec(const char *shex, const unsigned int len);
 
-#endif 
+#endif

@@ -24,8 +24,10 @@ void setup(){
   lcd.begin();
   pinMode(PIN_DEBUG, INPUT_PULLUP);
   //Set slave number
+  int k = 1;
   for (int i=0; i<NUMBER_LEG; i++)
-    ql->leg[i].n_slave = i;
+    for (int j=0; j<NUMBER_PART_LEG; j++)
+      ql->leg[i].leg_parts[j].n_slave = (k++);
   SPI_DIR = (CE + SCK + CSN + MOSI);
   SPI_DIR &= ~ (IRQ + MISO);
   init_io();                        // Initialize IO port
@@ -95,12 +97,12 @@ void scan_str() {
 
 void sendToSlave (){
   for (unsigned int i=0; i<NUMBER_LEG; i++){
-    Wire.beginTransmission(ql->leg[i].n_slave);
     for (unsigned int j=0; j<NUMBER_PART_LEG; j++){
+      Wire.beginTransmission(ql->leg[i].leg_parts[j].n_slave);
       Wire.write((ql->leg[i].leg_parts[j].micro_s_angle) >> 8);
       Wire.write((ql->leg[i].leg_parts[j].micro_s_angle) & 255);
+      Wire.endTransmission();
     }//for-j
-    Wire.endTransmission();
   }//for-i
 }//sendToSlave
 
