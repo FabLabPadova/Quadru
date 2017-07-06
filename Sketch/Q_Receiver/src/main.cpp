@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
-#include "NRF24L01.h"
+#include <RF24Fast.h>
 #include <Quadru.h>
 #include <Utility.h>
 
@@ -9,8 +9,13 @@
 #define PIN_DEBUG 4
 #define START_ELEMENT_LEG 5
 
+#define TX_PLOAD_WIDTH  32  // 32 unsigned chars TX payload
+
+bool stringComplete = false;
+unsigned int ii = 0;
+
 LiquidCrystal_I2C lcd(0x27, 16, 4);
-unsigned char rx_buf[TX_PLOAD_WIDTH];
+RF24Fast radio;
 String rec = "";
 bool end_str = false;
 Quadru* ql = new Quadru();
@@ -20,53 +25,27 @@ Quadru_Part_type getTypeFromInt (int n);
 void sendToSlave ();
 
 void setup(){
+  Serial.begin(9600);
   Wire.begin();
   lcd.begin();
   pinMode(PIN_DEBUG, INPUT_PULLUP);
   //Set slave number
-  int k = 1;
   for (int i=0; i<NUMBER_LEG; i++)
-    for (int j=0; j<NUMBER_PART_LEG; j++)
-      ql->leg[i].leg_parts[j].n_slave = (k++);
-  SPI_DIR = (CE + SCK + CSN + MOSI);
-  SPI_DIR &= ~ (IRQ + MISO);
-  init_io();                        // Initialize IO port
-  unsigned char status_rf = SPI_Read(STATUS);
-  Serial.begin(115200);
-  Serial.print("status = ");
-  Serial.println(status_rf, HEX);     // There is read the mode’s status register, the default value should be ‘E’
-  Serial.println("RX_Mode start...");
-  RX_Mode();                        // set RX mode
-  lcd.print("Status : ");
-  lcd.print(status_rf);
+      ql->leg[i].n_slave = i;
   lcd.setCursor(0,2);
   lcd.print("Quadru ");
-  if (status_rf == 14)
-    lcd.print("ready");
-  else{
-    lcd.print("not ready");
-    lcd.setCursor(0,3);
-    lcd.print("Error in Communication");
-    while (1) {}
-  }
+  radio.init(0xABCDABCD71LL, 0x544d52687CLL, ROLE_TX);
+  radio.setRole(ROLE_RX);
   delay(2000);
 }//setup
 
 void loop() {
-  unsigned char status = SPI_Read(STATUS);                         // read register STATUS's value
-  if (status & RX_DR) {                                             // if receive data ready (TX_DS) interrupt
-    SPI_Read_Buf(RD_RX_PLOAD, rx_buf, TX_PLOAD_WIDTH);             // read playload to rx_buf
-    SPI_RW_Reg(FLUSH_RX, 0);           // clear RX_FIFO
-    unsigned int i = 0;
-    while (i < TX_PLOAD_WIDTH && !(end_str = rx_buf[i] == '!'))
-      rec += (char)rx_buf[i++];
-    if (end_str) { //elaborate string.
-      scan_str();
-      rec = "";
-      end_str = false;
-    }//if
-  }//if-status
-  SPI_RW_Reg(WRITE_REG + STATUS, status);                          // clear RX_DR or TX_DS or MAX_RT interrupt flag
+  if (stringComplete){
+    scan_str();
+    stringComplete = false;
+    rec = "";
+    ii = 0;
+  }//if-c
 }//loop
 
 //Scan rec string. Every 3 character function captures string and convert hex to dec.
@@ -87,9 +66,8 @@ void scan_str() {
     else
       cg++;
   }//for
+
   if (digitalRead(PIN_DEBUG)){
-    Serial.print("Stringa : ");
-    Serial.println(rec);
     printQuadruInfo(ql, lcd);
   }//if-debug
   sendToSlave();
@@ -97,12 +75,12 @@ void scan_str() {
 
 void sendToSlave (){
   for (unsigned int i=0; i<NUMBER_LEG; i++){
+    Wire.beginTransmission(ql->leg[i].n_slave);
     for (unsigned int j=0; j<NUMBER_PART_LEG; j++){
-      Wire.beginTransmission(ql->leg[i].leg_parts[j].n_slave);
       Wire.write((ql->leg[i].leg_parts[j].micro_s_angle) >> 8);
       Wire.write((ql->leg[i].leg_parts[j].micro_s_angle) & 255);
-      Wire.endTransmission();
     }//for-j
+    Wire.endTransmission();
   }//for-i
 }//sendToSlave
 
@@ -124,3 +102,14 @@ Quadru_Part_type getTypeFromInt (int n){
    }//switch
    return tret;
 }//getTypeFromInt
+
+void serialEvent() {
+  while (Serial.available()) {
+    char c = (char)Serial.read();
+    rec += c;
+    if ((stringComplete = (c == '!'))){
+      break;
+    }
+    ii++;
+  }//while
+}//serialEvent

@@ -10,12 +10,12 @@
 enum Quadru_Part_type {FEMORE = 0, TIBIA = 1, ROTAZIONE = 2, FOO = 3};
 
 struct Quadru_part{
-  int n_slave;
   Quadru_Part_type type;
   unsigned int micro_s_angle;
 };
 
 struct Quadru_leg{
+  int n_slave;
   Quadru_part leg_parts[NUMBER_PART_LEG];
 };
 
