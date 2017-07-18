@@ -7,65 +7,70 @@
 #define N_PART 3
 #define CLIENT_TIMEOUT 5000
 
-IPAddress ip(192, 168, 1, 233);
+IPAddress ip(192, 168, 1, 247);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 const char* ssid     = "MonkeyPlanet";
 const char* password = "paperagiallachenuota1999";
-unsigned long timer = 0;
 
 WiFiServer server(80, 1);
 WiFiClient client;
 
 void convertAndSend(String &jsonReq);
 
-void setup(){
-  Serial.begin(115200);
-  WiFi.config(ip, gateway, subnet);
-  WiFi.begin(ssid, password);
-
+void connectClient(){
+    WiFi.config(ip, gateway, subnet);
+    WiFi.setAutoConnect(true);
+    WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) {
-        delay(500);
+
+        delay(1000);
         Serial.print(".");
     }
     Serial.println("");
     Serial.println("WiFi connected");
     Serial.println("IP address: ");
     Serial.println(WiFi.localIP());
-  Wire.begin();
+
+}
+
+void setup(){
+  Serial.begin(115200);
+  connectClient();
   //Set slave number
   server.begin();
   Serial.println("Partito...!");
+  Wire.begin();
 }//setup
 
 void loop() {
   if (client = server.available()) {
+
       Serial.println("_CONN");
       String currentLine = "";
       int timeout = millis();
       bool toKill = false;
       while (client.connected()) {
-        if (toKill = (millis() - timeout > CLIENT_TIMEOUT && currentLine == "")){
+        if (toKill = (millis() - timeout > CLIENT_TIMEOUT)){
+          client.stop();
+          Serial.println("_DISCONN");
           break;
         }
         if (client.available()) {
-        timer = millis();
+
           char c = client.read();
           if (c == '$') {
             currentLine.trim();
             if (currentLine != ""){
               convertAndSend(currentLine);
+              currentLine = "";
+              timeout = millis();
             }
-            currentLine = "";
-            timeout = millis();
-
-          } else if (c != '\r') {
+          } else {
             currentLine += c;
           }
+
         }//while
-      }
-      if (toKill){
-        client.stop();
       }
     }
 }//loop
@@ -86,6 +91,7 @@ void convertAndSend(String& jsonReq){
         Wire.write(motor_send >> 8);
         Wire.write(motor_send & 255);
       }
+      Wire.endTransmission();
     }
   }
 
