@@ -1,6 +1,13 @@
-from GhostEntity import GhostEntity
+from GhostClient import GhostClient
+import time
 
-gh = GhostEntity()
-line = '1350,1382,800,1638,1795,800,1596,1877,800,1290,1265,800'
-gh.parsingLine(line)
-print(gh.toDict())
+gh = GhostClient()
+with open('logquadru.txt', 'r') as f:
+    lines = f.readlines()
+
+while True:
+    for l in lines:
+        l = l.replace('\ufeff', '')
+        gh.parsingLine(l)
+        print(gh.sendAll())
+        time.sleep(0.10)
