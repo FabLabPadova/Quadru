@@ -30,5 +30,5 @@ def setLegTry():
     print(gh.set_leg(0, TypePartGhost.TIBIA, 1166))
     time.sleep(1)
 
-#startSend()
-setLegTry()
+startSend()
+#setLegTry()
