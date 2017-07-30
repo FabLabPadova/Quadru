@@ -40,14 +40,14 @@ class GhostEntity:
         root = {}
         if (n_leg not in range(len(self.legs))):
             raise IndexError('n_leg is not in range.')
-        root['index'] = n_leg
-        root['np'] = 1
-        root['parts'] = []
+        root['nl'] = 1
+        root['legs'] = []
+        root['legs'].append({'index' : n_leg, 'np' : 1, 'parts' : []})
         was_found = False
         for j in range(len(self.legs[n_leg].parts)):
             if self.legs[n_leg].parts[j].type == type:
                 self.legs[n_leg].parts[j].set_value(value)
-                root['parts'].append({'value' : self.legs[n_leg].parts[j].value, 'type' : int(self.legs[n_leg].parts[j].type.value), 'index' : j})
+                root['legs'][n_leg]['parts'].append({'value' : self.legs[n_leg].parts[j].value, 'type' : int(self.legs[n_leg].parts[j].type.value), 'index' : j})
                 was_found = True
                 break
         if not was_found:
